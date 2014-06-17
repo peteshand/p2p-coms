@@ -25,7 +25,6 @@ package blaze.service.p2p
 		public function P2PService() 
 		{
 			if (!P2PService.communicationObjects) P2PService.communicationObjects = new Vector.<P2PObject>();
-			//P2PService.communicationObjects.push(group(P2PService.DEFAULT_GROUP));
 		}
 		
 		public function start():void
@@ -52,16 +51,7 @@ package blaze.service.p2p
 			}
 		}
 		
-		private function SendMessage(groupID:String=null):void 
-		{
-			/*if (groupID) group(groupID).SendMessage();
-			else {
-				for (var i:int = 0; i < P2PService.communicationObjects.length; i++) P2PService.communicationObjects[i].SendMessage();
-			}*/
-		}
-		
-		
-		public function addListener(groupID:String, objectID:String=null):Signal 
+		public function groupSignal(groupID:String, objectID:String=null):Signal 
 		{
 			if (!objectID) objectID = 'all';
 			return group(groupID).msgSignal(objectID);
@@ -101,12 +91,9 @@ package blaze.service.p2p
 			for (var i:int = 0; i < numVars; i++) 
 			{
 				var type:String = classXML.factory.variable[i].@type;
-				//if (type.indexOf("::") != -1) {
-					
-					var VarClass:Class = Class(getDefinitionByName(type));
-					if (alreadyAdded(VarClass)) continue;
-					register(VarClass);
-				//}
+				var VarClass:Class = Class(getDefinitionByName(type));
+				if (alreadyAdded(VarClass)) continue;
+				register(VarClass);
 			}
 		}
 		
