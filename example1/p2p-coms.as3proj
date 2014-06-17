@@ -4,8 +4,8 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\p2pcoms.swf" />
-    <movie fps="30" />
+    <movie path="bin\p2pcoms2.swf" />
+    <movie fps="60" />
     <movie width="800" />
     <movie height="600" />
     <movie version="3" />
@@ -17,6 +17,7 @@
   <classpaths>
     <class path="src" />
     <class path="..\src" />
+    <class path="..\example\src" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -54,6 +55,7 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="src\as3-signals-v0.9-BETA.swc" />
+    <element path="src\MonsterDebugger.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -73,7 +75,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\Main.as" />
+    <compile path="..\example\src\Main.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>

@@ -123,8 +123,10 @@ package blaze.service.p2p
 		
 		private function SendMessage():void 
 		{
+			MsgReceived(frames);
 			if (group) {
-				group.sendToAllNeighbors(frames);
+				//group.sendToAllNeighbors(frames);
+				group.post(frames);
 				clearAllMsgs();
 			}
 		}
@@ -150,7 +152,7 @@ package blaze.service.p2p
 		
 		private function netStatus(event:NetStatusEvent):void
 		{
-			//trace("event.info.code = " + event.info.code);
+			trace("event.info.code = " + event.info.code);
 			switch(event.info.code){
 				case "NetConnection.Connect.Success":
 					setupGroup();
@@ -217,7 +219,8 @@ package blaze.service.p2p
 		{
 			for (var j:int = 0; j < frames.length; j++) 
 			{
-				Delay.by(j, FrameMsgReceived, [frames[j]]);
+				if (j == 0) FrameMsgReceived(Vector.<*>(frames[j]));
+				else Delay.by(j, FrameMsgReceived, [frames[j]]);
 			}
 		}
 		
